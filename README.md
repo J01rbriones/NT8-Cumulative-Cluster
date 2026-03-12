@@ -1,52 +1,49 @@
 # NT8-Cumulative-Cluster
 
-### 📊 Vista del Indicador en el Gráfico
-![Vista General del Indicador](cluster.png)
+### 📊 Análisis de Flujo de Órdenes y Acción del Precio
+![Vista del Gráfico](cluster.png)
 
 ## 🎯 ¿Qué hace este indicador?
-Este indicador avanzado de **Order Flow** para NinjaTrader 8 rastrea la agresividad institucional en tiempo real. Su diferencial es que no solo mide el volumen nominal, sino que calcula el **valor monetario real ($)** de las órdenes, permitiendo identificar dónde se está inyectando capital pesado.
+Este indicador avanzado de **Order Flow** para NinjaTrader 8 rastrea la agresividad institucional en tiempo real. Su función principal es procesar el volumen y transformarlo en **datos visuales de alta precisión** directamente sobre las velas japonesas.
 
-## 🌐 Sincronización Global Multi-Instrumento
-Una de las funciones más potentes de este script es su capacidad de **agregación global**:
-* **Cómputo Unificado:** Si aplicas el indicador en varios gráficos a la vez (por ejemplo, en ES, NQ y RTY), los valores de **Global Orders Total** sumarán la actividad de todos los instrumentos en tiempo real.
-* **Consola Centralizada:** Las ventanas de salida (Pestañas 1 y 2) recopilarán las órdenes y clústeres de todos los gráficos donde el indicador esté activo, permitiéndote auditar todo tu mercado desde un solo lugar.
+## 🚀 Funciones Principales en el Gráfico
 
-## 📊 Monitoreo de Datos y Salidas (Output)
-El script está diseñado para enviar información detallada a dos pestañas distintas en la ventana de **Salida de NinjaScript**, facilitando la lectura sin saturar al trader:
+### 1. Clústeres Dinámicos de Agresividad
+El indicador dibuja elipses en los puntos donde se detecta una entrada de capital inusual.
+* **Inteligencia Visual:** El tamaño y la opacidad de los círculos no son fijos; reaccionan proporcionalmente a la intensidad del dinero. A mayor capital, mayor es el círculo y más fuerte su color.
+* **Métricas de Compra/Venta:** Identifica instantáneamente si la agresividad proviene del *Ask* (compras institucionales) o del *Bid* (ventas institucionales).
 
-### 1. Registro de Clústeres Confirmados (Salida Pestaña 2)
-Esta pestaña muestra exclusivamente los clústeres que han sido dibujados en el gráfico. 
-* **Filtro inteligente:** Solo imprime información si el valor monetario del clúster supera el **Output Threshold ($)** configurado en los parámetros.
-* **Uso:** Ideal para auditar los puntos de interés que ves en el gráfico.
+### 2. Valores en Cascada (Historial de Clústeres)
+En las esquinas superiores del gráfico, el indicador genera una lista vertical en tiempo real con los valores de los últimos 35 clústeres detectados.
+* **Lectura de Momentum:** Esta "cascada" de datos permite al trader ver no solo el clúster actual, sino la secuencia de fuerza previa para identificar si el interés institucional está aumentando o disminuyendo.
+* **Totales Locales:** Suma automáticamente el valor de esta cascada para darte el volumen total acumulado del movimiento reciente.
 
-### 2. Flujo Detallado de Órdenes (Salida Pestaña 1)
-Aquí se imprime el flujo constante de órdenes agresivas que golpean el Bid y el Ask.
-* **Sin filtros:** A diferencia de los clústeres, esta pestaña registra todas las órdenes detectadas para un seguimiento exhaustivo del tape.
-* **Detalle:** Incluye precio exacto, instrumento y valor total de la transacción.
+### 3. Sincronización Global Multi-Instrumento
+* **Cómputo Unificado:** Gracias a su arquitectura, si aplicas el indicador en varios gráficos (ej. ES, NQ y RTY), los valores de **Global Orders Total** sumarán la actividad de todos los mercados simultáneamente.
+* **Visión Macro:** Te permite ver el sentimiento total del mercado de índices desde un solo gráfico.
 
-### 🔍 Detalle de Salidas y Consola
-![Detalle](order.png)
+## 🖥️ Monitoreo de Salidas (NinjaScript Output)
+Para un análisis profesional exhaustivo, el script envía datos detallados a la consola:
+* **Pestaña 1 (Flujo de Órdenes):** Registro de cada orden individual que golpea el mercado.
+* **Pestaña 2 (Registro de Clústeres):** Auditoría de los clústeres dibujados, filtrados por el **Output Threshold ($)** para evitar ruido.
 
-## ✨ Funciones clave:
-* **Cálculo de Valor Real:** Soporta multiplicadores automáticos para activos principales (**ES, NQ, MES, MNQ, YM**, etc.).
-* **Clústeres Dinámicos:** Dibuja elipses cuya opacidad y tamaño reaccionan proporcionalmente a la intensidad del capital.
-* **Totales Globales:** Muestra acumuladores en tiempo real (Local y Global) directamente en las esquinas del gráfico para medir el sentimiento de la sesión.
+![Detalle de Salidas y Consola](order.png)
 
 ## 🛠 Parámetros Técnicos
 | Parámetro | Descripción |
 | :--- | :--- |
 | **Cluster Threshold** | Volumen mínimo necesario para que se genere un clúster visual. |
-| **Output Threshold ($)** | Valor monetario mínimo para que un clúster se registre en la Pestaña 2 de salida. |
-| **Normalization Multiplier** | Sensibilidad de la escala visual (ajusta el tamaño de los círculos). |
+| **Output Threshold ($)** | Valor monetario mínimo para que una orden o clúster se registre en la consola. |
+| **Normalization Multiplier** | Ajusta la sensibilidad visual (mapeo de $ a tamaño de círculo). |
 | **Cluster Circle Max Scale** | Tamaño máximo permitido para las elipses en el gráfico. |
 
 ## 🚀 Instalación
-1. Descarga el archivo `CumulativeCluster.cs` de este repositorio.
-2. Colócalo en la ruta: `Documentos/NinjaTrader 8/bin/Custom/Indicators`.
+1. Descarga el archivo `CumulativeCluster.cs`.
+2. Colócalo en: `Documentos/NinjaTrader 8/bin/Custom/Indicators`.
 3. Abre NinjaTrader 8, ve al **NinjaScript Editor** y presiona **F5** para compilar.
-4. El indicador aparecerá como `Cumulative Cluster` en tu lista habitual.
 
 ---
+
 ## ⚖️ Descargo de Responsabilidad y Gestión de Riesgos
 
 **Advertencia de Riesgo:** El comercio de futuros y derivados conlleva un riesgo sustancial de pérdida y no es adecuado para todos los inversores. El rendimiento pasado no es necesariamente indicativo de resultados futuros. El uso de este indicador es bajo su propia responsabilidad y el autor no se hace responsable de las pérdidas financieras derivadas del uso de este software.
