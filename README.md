@@ -1,9 +1,15 @@
 # NT8-Cumulative-Cluster
 
-![Vista General del Indicador](salida_cluster.png)
+### 📊 Vista del Indicador en el Gráfico
+![Vista General del Indicador](cluster.png)
 
 ## 🎯 ¿Qué hace este indicador?
 Este indicador avanzado de **Order Flow** para NinjaTrader 8 rastrea la agresividad institucional en tiempo real. Su diferencial es que no solo mide el volumen nominal, sino que calcula el **valor monetario real ($)** de las órdenes, permitiendo identificar dónde se está inyectando capital pesado.
+
+## 🌐 Sincronización Global Multi-Instrumento
+Una de las funciones más potentes de este script es su capacidad de **agregación global**:
+* **Cómputo Unificado:** Si aplicas el indicador en varios gráficos a la vez (por ejemplo, en ES, NQ y RTY), los valores de **Global Orders Total** sumarán la actividad de todos los instrumentos en tiempo real.
+* **Consola Centralizada:** Las ventanas de salida (Pestañas 1 y 2) recopilarán las órdenes y clústeres de todos los gráficos donde el indicador esté activo, permitiéndote auditar todo tu mercado desde un solo lugar.
 
 ## 📊 Monitoreo de Datos y Salidas (Output)
 El script está diseñado para enviar información detallada a dos pestañas distintas en la ventana de **Salida de NinjaScript**, facilitando la lectura sin saturar al trader:
@@ -18,7 +24,8 @@ Aquí se imprime el flujo constante de órdenes agresivas que golpean el Bid y e
 * **Sin filtros:** A diferencia de los clústeres, esta pestaña registra todas las órdenes detectadas para un seguimiento exhaustivo del tape.
 * **Detalle:** Incluye precio exacto, instrumento y valor total de la transacción.
 
-![Detalle](salida_ordenes.png)
+### 🔍 Detalle de Salidas y Consola
+![Detalle](order.png)
 
 ## ✨ Funciones clave:
 * **Cálculo de Valor Real:** Soporta multiplicadores automáticos para activos principales (**ES, NQ, MES, MNQ, YM**, etc.).
